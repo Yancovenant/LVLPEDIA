@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "google" {
-  project = "a" # Change this to your GCP project ID
+  project = "lvlpedia-tts-bark" # Change this to your GCP project ID
   region  = "us-central1"
 }
 
@@ -19,7 +19,7 @@ resource "google_cloud_run_service" "bark_tts" {
   template {
     spec {
       containers {
-        image = "gcr.io/YOUR_GOOGLE_CLOUD_PROJECT/bark-tts-api"
+        image = "gcr.io/lvlpedia-tts-bark/bark-tts-api"
         ports {
           container_port = 5000
         }
