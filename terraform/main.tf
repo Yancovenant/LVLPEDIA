@@ -1,14 +1,14 @@
 terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 4.0"
+  cloud {
+    organization = "YOUR_TERRAFORM_CLOUD_ORG"  # Change this to your Terraform Cloud org
+    workspaces {
+      name = "LVLPEDIA-Workspace" # Change this if needed
     }
   }
 }
 
 provider "google" {
-  project = "YOUR_GCP_PROJECT_ID"
+  project = "YOUR_GOOGLE_CLOUD_PROJECT" # Change this to your GCP project ID
   region  = "us-central1"
 }
 
@@ -19,7 +19,7 @@ resource "google_cloud_run_service" "bark_tts" {
   template {
     spec {
       containers {
-        image = "gcr.io/YOUR_GCP_PROJECT_ID/bark-tts-api"
+        image = "gcr.io/YOUR_GOOGLE_CLOUD_PROJECT/bark-tts-api"
         ports {
           container_port = 5000
         }
