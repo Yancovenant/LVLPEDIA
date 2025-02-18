@@ -1,8 +1,8 @@
 terraform {
   cloud {
-    organization = "YOUR_TERRAFORM_CLOUD_ORG"  # Change this to your Terraform Cloud org
+    organization = "LVLPEDIA"  # Change this to your Terraform Cloud org
     workspaces {
-      name = "LVLPEDIA-Workspace" # Change this if needed
+      name = "LVLPEDIA_TTS_BARK" # Change this if needed
     }
   }
 }
