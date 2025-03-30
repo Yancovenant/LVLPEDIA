@@ -154,7 +154,6 @@ def split_text_by_titles(text, max_chunk_size=29000):
     sections = []
     current_title = "Introduction"  # Default title if none is found at the beginning
     current_chunk = ""
-    current_section = ""
 
     for line in text.split("\n"):
         if line.strip():
