@@ -152,19 +152,23 @@ def split_text_by_titles(text, max_chunk_size=29000):
     valid_endings = (".", "!", "?", '"', "”", "»", "«")
 
     sections = []
+    current_title = "Introduction"  # Default title if none is found at the beginning
+    current_chunk = ""
     current_section = ""
 
     for line in text.split("\n"):
-        if line:
-            if title_pattern.match(line) or not line.endswith(valid_endings):
-                if current_section and len(current_section) >= max_chunk_size:
-                    sections.append(current_section)
-                    current_section = ""
-                current_section += "\n\n" + line
+        if line.strip():
+            if title_pattern.match(line.strip()) or not line.endswith(valid_endings):
+                if current_chunk and len(current_chunk) >= max_chunk_size:
+                    sections.append({"title": current_title, "chunk": current_chunk.strip()})
+                    current_title = line.strip()
+                    current_chunk = ""
+                current_chunk += "\n\n" + line
             else:
-                current_section += " " + line
+                current_chunk += " " + line
 
-    if current_section:
-        sections.append(current_section)
+    if current_chunk:
+        sections.append({"title": current_title, "chunk": current_chunk.strip()})
 
     return sections
+    
