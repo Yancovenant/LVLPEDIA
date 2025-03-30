@@ -164,7 +164,7 @@ def split_text_by_titles(text, max_chunk_size=29000):
                     current_chunk = ""
                 current_chunk += "\n\n" + line
             else:
-                current_chunk += " " + line
+                current_chunk += "\n\n" + line
 
     if current_chunk:
         sections.append({"title": current_title, "chunk": current_chunk.strip()})
